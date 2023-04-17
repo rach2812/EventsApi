@@ -14,6 +14,8 @@ namespace EventsApi.Models
         protected override void OnConfiguring(DbContextOptionsBuilder options) 
         {
             options.UseNpgsql(Configuration.GetConnectionString("EventsDatabase"));
+            AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
+
         }
 
         public DbSet<Event> Events { get; set; } = null!;

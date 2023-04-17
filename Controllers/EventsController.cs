@@ -22,7 +22,6 @@ namespace EventsApi.Controllers
             return new ActionResult<IEnumerable<Event>>(responseBody);
         }
 
-        // GET: api/events/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Event>> GetEvent(int id)
         {
@@ -44,17 +43,24 @@ namespace EventsApi.Controllers
             return NoContent();
         }
 
-        // POST: api/TodoItems
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult> CreateEvent(Event eventRequest)
+        public async Task<ActionResult> CreateEvent(EventRequest eventRequest)
         {
+            var newEvent = new Event();
+            newEvent.Id = eventRequest.Id;
+            newEvent.Description = eventRequest.Description;
+            newEvent.Title = eventRequest.Title;
+            newEvent.Location = eventRequest.Location;
+            newEvent.StartDate = DateTime.Parse(eventRequest.StartDate);
+            newEvent.EndDate = DateTime.Parse(eventRequest.EndDate);
+            
             try 
             {
-                await _eventsService.CreateEvent(eventRequest);
+                await _eventsService.CreateEvent(newEvent);
             }
-            catch (Exception) 
+            catch (Exception e) 
             {
+                Console.WriteLine(e.ToString());
                 return BadRequest();
             }
             return Ok();
