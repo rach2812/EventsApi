@@ -47,7 +47,6 @@ namespace EventsApi.Controllers
         public async Task<ActionResult> CreateEvent(EventRequest eventRequest)
         {
             var newEvent = new Event();
-            newEvent.Id = eventRequest.Id;
             newEvent.Description = eventRequest.Description;
             newEvent.Title = eventRequest.Title;
             newEvent.Location = eventRequest.Location;
