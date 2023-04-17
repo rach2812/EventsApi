@@ -20,7 +20,7 @@ builder.Services.AddCors(options =>
         builder =>
     {
         builder.WithOrigins("http://localhost",
-            "http://localhost:49393")
+            "http://localhost:4200")
         .AllowAnyMethod()
         .AllowAnyHeader()
         .SetIsOriginAllowedToAllowWildcardSubdomains();
