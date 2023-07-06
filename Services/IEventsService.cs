@@ -4,7 +4,7 @@ namespace EventsApi.Services;
 
 public interface IEventsService
 {
-    Task<IEnumerable<Event>> GetAllEvents();
+    Task<IEnumerable<Event>> GetEventsForDate(DateTime selectedDate);
     Task<Event> GetEventById(int id);
     Task CreateEvent(Event eventRequest);
     Task UpdateEvent(int id, Event eventRequest);

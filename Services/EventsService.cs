@@ -11,9 +11,9 @@ public class EventsService : IEventsService
         _context = context;
     }
 
-    public async Task<IEnumerable<Event>> GetAllEvents()
+    public async Task<IEnumerable<Event>> GetEventsForDate(DateTime selectedDate)
     {
-        return await _context.Events.Select(x => x).ToListAsync();   
+        return await _context.Events.Where(x => x.StartDate == selectedDate).ToListAsync();
     }
 
     public async Task<Event> GetEventById(int id)

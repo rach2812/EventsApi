@@ -16,9 +16,10 @@ namespace EventsApi.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Event>>> GetEvents()
+        public async Task<ActionResult<IEnumerable<Event>>> GetEvents(string selectedDate)
         {
-            var responseBody = await _eventsService.GetAllEvents();
+            var date = DateTime.Parse(selectedDate);
+            var responseBody = await _eventsService.GetEventsForDate(date);
             return new ActionResult<IEnumerable<Event>>(responseBody);
         }
 
